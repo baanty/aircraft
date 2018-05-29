@@ -1,6 +1,7 @@
 package service;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -24,7 +25,7 @@ public abstract class CommonService {
     
     public List<String[]> getRowValues() {
         List<String[]> allRows = new ArrayList<String[]>();
-        Resource resource = resourceLoader.getResource(getCsvName());
+        Resource resource = resourceLoader.getResource("csv" + File.separator + getCsvName());
         try (BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(resource.getInputStream()))) {
             String line;
             while((line = bufferedReader.readLine()) != null){

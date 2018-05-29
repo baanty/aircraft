@@ -16,7 +16,7 @@ import vo.CountryVo;
 public class CountryService extends CommonService{
 
     @Getter
-    private String csvName = "country.csv";
+    private String csvName = "counties.csv";
     
     private List<CountryVo> allCountries;
     
@@ -25,15 +25,29 @@ public class CountryService extends CommonService{
         allCountries = new ArrayList<CountryVo>();
         getRowValues().stream()
                       .filter(row -> row != null)
-                      .map(row -> new CountryVo(row[0], row[1], row[2], row[3], row[4], row[5]))
+                      .map(row -> new CountryVo(row[0], 
+                                                row[1], 
+                                                row[2], 
+                                                row[3], 
+                                                row[4], 
+                                                row[5]))
                       .forEach(countryVo -> allCountries.add(countryVo));
     }
     
-    public List<String> getCountryLike(String inputCountry) {
+    public List<String> getCountryNamesLike(String inputCountry) {
         return allCountries.stream()
                            .filter(vo -> (vo.getCode().toLowerCase().contains(inputCountry.toLowerCase()) 
                                        || vo.getName().toLowerCase().contains(inputCountry.toLowerCase())))
                            .map(CountryVo::getName)
+                           .collect(Collectors.toList());
+                           
+    }
+    
+    public List<String> getCountryCodesLike(String inputCountry) {
+        return allCountries.stream()
+                           .filter(vo -> (vo.getCode().toLowerCase().contains(inputCountry.toLowerCase()) 
+                                       || vo.getName().toLowerCase().contains(inputCountry.toLowerCase())))
+                           .map(CountryVo::getCode)
                            .collect(Collectors.toList());
                            
     }
