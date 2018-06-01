@@ -12,7 +12,7 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  *
  */
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"controller", "service"})
 public class ApplicationRunner extends SpringBootServletInitializer{
 
     /**
@@ -21,5 +21,5 @@ public class ApplicationRunner extends SpringBootServletInitializer{
     public static void main(String[] args) {
         SpringApplication.run(ApplicationRunner.class, args);
     }
-
+    
 }

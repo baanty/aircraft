@@ -1,5 +1,6 @@
 package service;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,12 +17,12 @@ import vo.CountryVo;
 public class CountryService extends CommonService{
 
     @Getter
-    private String csvName = "counties.csv";
+    private String csvName = "countries.csv";
     
     private List<CountryVo> allCountries;
     
     @PostConstruct
-    public void setUp() {
+    public void setUp() throws URISyntaxException {
         allCountries = new ArrayList<CountryVo>();
         getRowValues().stream()
                       .filter(row -> row != null)
@@ -51,5 +52,4 @@ public class CountryService extends CommonService{
                            .collect(Collectors.toList());
                            
     }
-    
 }

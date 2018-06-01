@@ -1,5 +1,6 @@
 package service;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +25,7 @@ public class AirportService extends CommonService {
     private List<AirportVo> allAirports;
     
     @PostConstruct
-    public void setUp() {
+    public void setUp() throws URISyntaxException {
         allAirports = new ArrayList<AirportVo>();
         getRowValues().stream()
                       .filter(row -> row != null)
