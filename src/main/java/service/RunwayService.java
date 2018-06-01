@@ -1,5 +1,6 @@
 package service;
 
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -27,7 +28,7 @@ public class RunwayService extends CommonService{
     private List<RunwayVo> allRunways;
     
     @PostConstruct
-    public void setUp() {
+    public void setUp() throws URISyntaxException {
         allRunways = new ArrayList<RunwayVo>();
         getRowValues().stream()
                       .filter(row -> row != null)
