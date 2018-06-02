@@ -19,6 +19,7 @@ public class CountryService extends CommonService{
     @Getter
     private String csvName = "countries.csv";
     
+    @Getter
     private List<CountryVo> allCountries;
     
     @PostConstruct
