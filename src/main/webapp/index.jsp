@@ -37,23 +37,31 @@
   
   
   <table ng-show="selectedName == 'Report'" >
-  <li ng-show="selectedName == 'Report'" >countries with highest number of airports and countries with lowest number of airports.</li> 
   
+  <tr ng-show="selectedName == 'Report'" >
+    <td>countries with highest number of airports and countries with lowest number of airports.
+    </td>
+  </tr>
    <tr ng-repeat="d in highestNumberOfAirportCountries" ng-show="selectedName == 'Report'">
     <td>{{d.counter}}</td>
     <td>{{d.showableVlaue}}</td>
    </tr>
    
    
-   <li  ng-show="selectedName == 'Report'">Type of runways </li>
-     
+   <tr ng-show="selectedName == 'Report'" >
+    <td>Type of runways
+    </td>
+  </tr>
    <tr ng-repeat="d in countryAndTypeOfRunwayData" ng-show="selectedName == 'Report'">
     <td>{{d.counter}}</td>
     <td>{{d.showableVlaue}}</td>
    </tr>
    
-   <li  ng-show="selectedName == 'Report'">top 10 most common runway identifications</li>
-     
+   
+   <tr ng-show="selectedName == 'Report'" >
+    <td>top 10 most common runway identifications
+    </td>
+  </tr>
    <tr ng-repeat="d in topRunwayIndentifications" ng-show="selectedName == 'Report'">
     <td>{{d.counter}}</td>
     <td>{{d.showableVlaue}}</td>
