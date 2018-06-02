@@ -14,12 +14,9 @@ import java.util.Set;
 import java.util.TreeMap;
 import java.util.stream.Collectors;
 
-import javax.annotation.PostConstruct;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import lombok.Getter;
 import vo.AirportVo;
 import vo.ApiResponseVo;
 import vo.CountryVo;
@@ -40,18 +37,7 @@ public class ReportService {
     @Autowired
     private RunwayService runwaysService;
     
-    @Getter
-    private List<ApiResponseVo> countryAndTypeOfRunwayData;
-    
-    @Getter
-    private List<ApiResponseVo> topRunwayIndentifications;
-    
-    @PostConstruct
-    private void buildCache() {
-        countryAndTypeOfRunwayData = buildCountryAndTypeOfRunwayData();
-        topRunwayIndentifications = buildTopRunwayIndentifications();
-    }
-    
+   
     public List<ApiResponseVo> getHighestNumberOfAirportCountries() {
         List<ApiResponseVo> apiResponse = new ArrayList<ApiResponseVo>();
         Map<Integer, CountryVo> data = new TreeMap<Integer, CountryVo>(new Comparator<Integer>() {
@@ -71,7 +57,7 @@ public class ReportService {
     }
     
     
-    private List<ApiResponseVo> buildCountryAndTypeOfRunwayData() {
+    public List<ApiResponseVo> getCountryAndTypeOfRunwayData() {
         List<ApiResponseVo> apiResponse = new ArrayList<ApiResponseVo>();
         Map<String, String> data = new HashMap<String, String>();
         countryService.getAllCountries()
@@ -94,7 +80,7 @@ public class ReportService {
         return apiResponse;
     }
     
-    private List<ApiResponseVo>  buildTopRunwayIndentifications() {
+    public List<ApiResponseVo>  getTopRunwayIndentifications() {
         List<ApiResponseVo> apiResponse = new ArrayList<ApiResponseVo>();
         Map<Integer, String> data = new TreeMap<Integer, String>(new Comparator<Integer>() {
             @Override
