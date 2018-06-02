@@ -27,8 +27,7 @@
    <li class="list-group-item" ng-repeat="countrydata in filterCountry"
     ng-click="fillTextbox(countrydata)">{{countrydata}}</li>
   </ul>
-  <input type="submit" />
-  <table ng-hide="selectedName != 'Report'">
+  <table ng-hide="selectedName == 'Report'">
    <tr ng-repeat="d in chosenCountryData" >
     <td>{{d.country}}</td>
     <td>{{d.airport}}</td>
@@ -48,6 +47,22 @@ app.controller('myCtrl', function($scope,$http) {
     $http.get("http://localhost:8080/getAllCountries")
     .then(function(response) {
         $scope.allCountries = response.data;
+    });
+    
+    $http.get("http://localhost:8080/getHighestNumberOfAirportCountries")
+    .then(function(response) {
+        $scope.highestNumberOfAirportCountries = response.data;
+    });
+    
+    
+    $http.get("http://localhost:8080/getCountryAndTypeOfRunwayData")
+    .then(function(response) {
+        $scope.countryAndTypeOfRunwayData = response.data;
+    });
+    
+    $http.get("http://localhost:8080/getTopRunwayIndentifications")
+    .then(function(response) {
+        $scope.topRunwayIndentifications = response.data;
     });
     
     $scope.complete = function(inputCountry){
