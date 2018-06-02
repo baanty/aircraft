@@ -53,4 +53,8 @@ public class CountryService extends CommonService{
                            .collect(Collectors.toList());
                            
     }
+    
+    public CountryVo getCountryFromCountryName(String countryName) {
+        return allCountries.stream().filter(cvo -> cvo.getName().toLowerCase().equals(countryName.toLowerCase())).findFirst().get();
+    }
 }

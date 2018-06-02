@@ -3,7 +3,6 @@ package service;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -55,11 +54,14 @@ public class AirportService extends CommonService {
         List<AirportVo> airports = new ArrayList<AirportVo>();
         if (chosenCountries != null && chosenCountries.size() > 0) {
             String chosenCountry = chosenCountries.stream().filter(c -> c != null && c.trim().length() > 0).findAny().get();
-            
-            return allAirports
-                      .stream()
-                      .filter(airport -> airport.getIsoCountry().toLowerCase().equals(chosenCountry.toLowerCase()))
-                      .collect(Collectors.toList());
+            if (chosenCountry != null && chosenCountry.length() > 2) {
+                chosenCountry = countryService.getCountryFromCountryName(chosenCountry).getCode();
+            }
+            for (AirportVo airport : allAirports) {
+                if (airport.getIsoCountry().toLowerCase().equals(chosenCountry.toLowerCase())) {
+                    airports.add(airport);
+                }
+            }
         }
         
         return airports;

@@ -25,6 +25,7 @@ public class RunwayService extends CommonService{
     @Getter
     private String csvName = "runways.csv";
     
+    @Getter
     private List<RunwayVo> allRunways;
     
     @PostConstruct
@@ -74,5 +75,9 @@ public class RunwayService extends CommonService{
     
     public List<RunwayVo> queryRunwaysWithAirportCode(String airportCode) {
         return allRunways.stream().filter(r -> r.getAirportRef().equals(airportCode)).collect(Collectors.toList());
+    }
+    
+    public List<RunwayVo> queryWithIdentificationTypes(String leIdent) {
+        return allRunways.stream().filter(runway -> leIdent.equalsIgnoreCase(runway.getLeident())).collect(Collectors.toList());
     }
 }
